@@ -1,21 +1,21 @@
+type Shapes = 'triangle' | 'rectangle' | 'circle';
+type Colors = 'red' | 'blue' | 'green';
+
 export interface Figure {
-  shape: 'triangle' | 'circle' | 'rectangle';
-  color: 'red' | 'green' | 'blue';
+  shape: Shapes;
+  color: Colors;
   getArea(): number;
 }
 
 export class Triangle implements Figure {
-  shape: 'triangle';
+  shape: Shapes = 'triangle';
 
-  color: Figure['color'];
-
-  a: number;
-
-  b: number;
-
-  c: number;
-
-  constructor(color: Figure['color'], a: number, b: number, c: number) {
+  constructor(
+    public color: Colors,
+    public a: number,
+    public b: number,
+    public c: number,
+  ) {
     if (a <= 0 || b <= 0 || c <= 0) {
       throw new Error('This figure does not have a negative value');
     }
@@ -23,12 +23,6 @@ export class Triangle implements Figure {
     if (a + b <= c || b + c <= a || c + a <= b) {
       throw new Error('This is not a triangle');
     }
-
-    this.shape = 'triangle';
-    this.color = color;
-    this.a = a;
-    this.b = b;
-    this.c = c;
   }
 
   getArea(): number {
@@ -40,20 +34,15 @@ export class Triangle implements Figure {
 }
 
 export class Circle implements Figure {
-  shape: 'circle';
+  shape: Shapes = 'circle';
 
-  color: Figure['color'];
-
-  radius: number;
-
-  constructor(color: Figure['color'], radius: number) {
+  constructor(
+    public color: Colors,
+    public radius: number,
+  ) {
     if (radius <= 0) {
       throw new Error('This figure does not have a negative value');
     }
-
-    this.shape = 'circle';
-    this.color = color;
-    this.radius = radius;
   }
 
   getArea(): number {
@@ -64,23 +53,16 @@ export class Circle implements Figure {
 }
 
 export class Rectangle implements Figure {
-  shape: 'rectangle';
+  shape: Shapes = 'rectangle';
 
-  color: Figure['color'];
-
-  width: number;
-
-  height: number;
-
-  constructor(color: Figure['color'], width: number, height: number) {
+  constructor(
+    public color: Colors,
+    public width: number,
+    public height: number,
+  ) {
     if (width <= 0 || height <= 0) {
       throw new Error('This figure does not have a negative value');
     }
-
-    this.shape = 'rectangle';
-    this.color = color;
-    this.width = width;
-    this.height = height;
   }
 
   getArea(): number {
